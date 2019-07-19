@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Configurations>Debug;Release;Debug Local Cloud</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Local Cloud|AnyCPU'">
+    <CodeAnalysisRuleSet />
+    <DefineConstants>TRACE;LOCAL_CLOUD</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Binaries\openssl" />
+    <None Remove="Binaries\openssl.cnf" />
+    <None Remove="Binaries\openssl.exe" />
+    <None Remove="Certs\VeterisATS.key" />
+    <None Remove="Certs\VeterisATS.pem" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Binaries\openssl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binaries\openssl.cnf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Binaries\openssl.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Certs\VeterisATS.key">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Certs\VeterisATS.pem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Config.Net" Version="4.13.2" />
+    <PackageReference Include="Config.Net.Json" Version="4.13.2" />
+    <PackageReference Include="EmbedIO" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview3.19153.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="PusherClient.NetStandard" Version="0.5.1" />
+    <PackageReference Include="websocketsharp.core" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\VeterisDomotic.ServerApi\VeterisDomotic.ServerApi\VeterisDomotic.ServerApi.csproj" />
+    <ProjectReference Include="..\..\WatsonTSKCP\WatsonTcp\WatsonTcp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Zeroconf">
+      <HintPath>lib\Mono.Zeroconf.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Zeroconf.Providers.Bonjour">
+      <HintPath>lib\Mono.Zeroconf.Providers.Bonjour.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
